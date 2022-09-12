@@ -5,11 +5,8 @@
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
-        <q-toolbar-title>
-          <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
-          </q-avatar>
-          Title
+        <q-toolbar-title class="text-weight-bold">
+          Mon super qwitter
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -17,7 +14,36 @@
     </q-header>
 
     <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
-      <!-- drawer content -->
+
+      <q-icon
+        class="q-pa-md"
+        name="fa-solid fa-earth-americas"
+        size="lg"
+        color="primary"
+      />
+
+
+      <q-list >
+
+        <q-item
+          clickable
+          v-ripple
+          to="/"
+          >
+          <q-item-section avatar>
+            <q-icon
+              color="primary"
+              name="house"
+              size="md" />
+          </q-item-section>
+
+          <q-item-section class="text-h6 text-weight-bold">Accueil</q-item-section>
+        </q-item>
+
+
+      </q-list>
+
+
     </q-drawer>
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
