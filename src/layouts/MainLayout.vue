@@ -13,7 +13,13 @@
       </q-toolbar>
     </q-header>
 
-    <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+    <q-drawer
+      show-if-above
+      v-model="leftDrawerOpen"
+      side="left"
+      bordered
+      :width="200"
+    >
 
       <q-icon
         class="q-pa-md"
@@ -32,12 +38,26 @@
           >
           <q-item-section avatar>
             <q-icon
-              color="primary"
               name="house"
               size="md" />
           </q-item-section>
 
           <q-item-section class="text-h6 text-weight-bold">Accueil</q-item-section>
+        </q-item>
+
+        <q-item
+          clickable
+          v-ripple
+          to="/about"
+          >
+          <q-item-section avatar>
+            <q-icon
+              name="info"
+              size="md" />
+          </q-item-section>
+
+          <q-item-section class="text-h6 text-weight-bold">about</q-item-section>
+
         </q-item>
 
 
