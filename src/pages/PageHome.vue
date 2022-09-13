@@ -104,6 +104,7 @@
               size="sm"
             />
             <q-btn
+              @click="deleteQweet(qweet)"
               flat
               round
               color="grey"
@@ -170,7 +171,17 @@ export default defineComponent({
       }
 
       this.qweets.unshift(newQweet)
+    },
+
+    deleteQweet(qweet){
+      console.log(qweet)
+      let qweetToDelete = qweet.date
+      let index = this.qweets.findIndex(qweet => qweet.date == qweetToDelete)
+      console.log(index);
+      this.qweets.splice(index, 1)
     }
+
+
   }
 })
 </script>
