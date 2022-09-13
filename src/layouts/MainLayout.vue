@@ -7,7 +7,7 @@
 
         <q-toolbar-title class="text-weight-bold">
 
-          <span class="gt-sm">Mon super qwitter</span>
+          <span class="gt-sm">{{ $route.name }}</span>
 
           <q-icon
             class="q-pa-md lt-sm header-icon"
