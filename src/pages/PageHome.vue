@@ -45,10 +45,9 @@
 
       </div>
 
-
-
-
     </div>
+
+    <q-separator class="divider" size="10px" color="grey-2" />
 
 
   </q-page>
@@ -71,5 +70,11 @@ export default defineComponent({
 <style lang="scss">
   .new-qweet{
     font-size: 19px;
+  }
+
+  .divider{
+    border-top: 1px solid;
+    border-bottom: 1px solid;
+    border-color: $orange-2;
   }
 </style>
