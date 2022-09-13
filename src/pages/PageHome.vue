@@ -4,7 +4,15 @@
 
     <div class="q-py-lg q-px-md">
 
-      <q-input bottom-slots v-model="text" label="Label" counter maxlength="12" :dense="dense">
+      <q-input
+        bottom-slots
+        v-model="newQweetContent"
+        label="quoi de neuf docteur..."
+        counter
+        maxlength="280"
+        placeholder="qu'est ce que tu raconte de beau..."
+      >
+
       <template v-slot:before>
         <q-avatar>
           <img src="https://cdn.quasar.dev/img/avatar5.jpg">
@@ -37,6 +45,11 @@
 import { defineComponent } from 'vue'
 
 export default defineComponent({
-  name: 'PageHome'
+  name: 'PageHome',
+  data(){
+    return {
+      newQweetContent: ''
+    }
+  }
 })
 </script>
