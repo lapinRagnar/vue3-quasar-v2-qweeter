@@ -6,7 +6,16 @@
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
 
         <q-toolbar-title class="text-weight-bold">
-          Mon super qwitter
+
+          <span class="gt-sm">Mon super qwitter</span>
+
+          <q-icon
+            class="q-pa-md lt-sm header-icon"
+            name="fa-solid fa-earth-americas"
+            size="sm"
+            color="orange"
+          />
+
         </q-toolbar-title>
 
         <q-btn dense flat round icon="menu" @click="toggleRightDrawer" />
@@ -167,3 +176,12 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .header-icon{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%)
+  }
+</style>
