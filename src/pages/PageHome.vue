@@ -2,29 +2,38 @@
 
   <q-page>
 
-    <div class="q-py-lg q-px-md">
+    <div class="q-py-lg q-px-md row items-end q-col-gutter-md">
 
-      <q-input
-        class="new-qweet"
-        bottom-slots
-        v-model="newQweetContent"
-        label="quoi de neuf docteur..."
-        counter
-        maxlength="280"
-        placeholder="qu'est ce que tu raconte de beau..."
-        autogrow
-      >
+      <div class="col">
 
-      <template v-slot:before>
-        <q-avatar size="xl">
-          <img src="https://cdn.quasar.dev/img/avatar5.jpg">
-        </q-avatar>
-      </template>
+        <q-input
+          class="new-qweet"
+          bottom-slots
+          v-model="newQweetContent"
+          label="quoi de neuf docteur..."
+          counter
+          maxlength="280"
+          placeholder="qu'est ce que tu raconte de beau..."
+          autogrow
+        >
+
+          <template v-slot:before>
+            <q-avatar size="xl">
+              <img src="https://cdn.quasar.dev/img/avatar5.jpg">
+            </q-avatar>
+          </template>
 
 
+        </q-input>
 
-      <template v-slot:after>
+
+      </div>
+
+
+      <div class="col col-shrink">
+
         <q-btn
+          class="q-mb-lg"
           unelevated
           rounded
           color="primary"
@@ -32,9 +41,11 @@
           no-caps
           :disable="!newQweetContent"
         />
-      </template>
 
-    </q-input>
+
+      </div>
+
+
 
 
     </div>
