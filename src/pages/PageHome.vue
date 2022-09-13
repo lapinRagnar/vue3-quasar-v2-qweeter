@@ -78,6 +78,7 @@
               <strong>lapinragnar</strong>
               <span class="text-grey-7">
                 @lapinragnar
+                &bull; <br class="lt-md"> {{ formaterDate(qweet.date) }}
               </span>
             </q-item-label>
 
@@ -123,10 +124,7 @@
 
 
           </q-item-section>
-            {{ formaterDate(qweet.date) }}
-          <q-item-section side top>
 
-          </q-item-section>
         </q-item>
 
         <q-separator inset="item" />
