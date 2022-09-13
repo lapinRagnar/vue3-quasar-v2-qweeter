@@ -114,9 +114,9 @@
 
 
         </q-item-section>
-
+          {{ formaterDate(qweet.date) }}
         <q-item-section side top>
-          {{ qweet.date }}
+
         </q-item-section>
       </q-item>
 
@@ -130,7 +130,9 @@
 </template>
 
 <script>
+
 import { defineComponent } from 'vue'
+import { useTimeAgo } from '@vueuse/core'
 
 export default defineComponent({
   name: 'PageHome',
@@ -146,7 +148,18 @@ export default defineComponent({
           content: "Lorem Ipsum est un générateur de faux textes aléatoires. Vous choisissez le nombre de paragraphes, de mots ou de listes. Vous obtenez alors un texte aléatoire que vous pourrez ensuite utiliser librement dans vos maquettes.",
           date: 1663055445649
         },
-      ]
+      ],
+
+    }
+  },
+  computed: {
+    relativeDate(value) {
+      return formatDistance(value, new Date())
+    }
+  },
+  methods: {
+    formaterDate(value){
+      return useTimeAgo(value)
     }
   }
 })

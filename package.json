@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
+    "@vueuse/core": "^9.2.0",
     "core-js": "^3.6.5",
+    "date-fns": "^2.29.2",
     "quasar": "^2.6.0",
     "sass": "^1.54.9",
     "vue": "^3.0.0",
