@@ -22,8 +22,15 @@
 
 
       <template v-slot:after>
-        <q-btn round dense flat icon="send" />
+        <q-btn
+          unelevated
+          rounded
+          color="primary"
+          label="Qweet"
+          no-caps
+        />
       </template>
+
     </q-input>
 
 
