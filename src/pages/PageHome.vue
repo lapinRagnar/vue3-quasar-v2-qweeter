@@ -33,6 +33,7 @@
       <div class="col col-shrink">
 
         <q-btn
+          @click="addNewQweet"
           class="q-mb-lg"
           unelevated
           rounded
@@ -160,6 +161,15 @@ export default defineComponent({
   methods: {
     formaterDate(value){
       return useTimeAgo(value)
+    },
+
+    addNewQweet(){
+      let newQweet = {
+        content: this.newQweetContent,
+        date: Date.now()
+      }
+
+      this.qweets.unshift(newQweet)
     }
   }
 })
