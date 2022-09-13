@@ -28,6 +28,7 @@
           color="primary"
           label="Qweet"
           no-caps
+          :disable="!newQweetContent"
         />
       </template>
 
