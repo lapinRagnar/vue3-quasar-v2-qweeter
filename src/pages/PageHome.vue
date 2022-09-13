@@ -55,7 +55,7 @@
     <q-list>
 
       <q-item class="q-py-md">
-        <q-item-section avatar>
+        <q-item-section avatar top>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/avatar2.jpg">
           </q-avatar>
@@ -63,18 +63,64 @@
 
         <q-item-section>
 
-          <q-item-label>
+          <q-item-label class="text-subtitle1">
             <strong>lapinragnar</strong>
             <span class="text-grey-7">
               @lapinragnar
             </span>
           </q-item-label>
-          <q-item-label class="qweet-content">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis facere alias,
-            necessitatibus magni maxime, rem vero, veniam eum enim vel molestiae.
-            
-            Ratione commodi doloremque obcaecati culpa quasi praesentium esse dolores.
+
+          <q-item-label class="qweet-content text-body1 q-pt-lg">
+
+            <p>
+
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis facere alias,
+              necessitatibus magni maxime, rem vero, veniam eum enim vel molestiae.
+
+              Ratione commodi doloremque obcaecati culpa quasi praesentium esse dolores.
+
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae laboriosam aut ipsa nostrum expedita totam ea quam corporis, quod, ad sunt amet aliquam, fuga itaque. Magni pariatur eum ea?
+
+
+            </p>
+
+            <div class="row justify-between q-mt-sm">
+
+              <q-btn
+                flat
+                round
+                color="grey"
+                icon="far fa-comment"
+                size="sm"
+              />
+
+              <q-btn
+                flat
+                round
+                color="grey"
+                icon="fas fa-retweet"
+                size="sm"
+              />
+
+              <q-btn
+                flat
+                round
+                color="grey"
+                icon="far fa-heart"
+                size="sm"
+              />
+              <q-btn
+                flat
+                round
+                color="grey"
+                icon="fas fa-trash"
+                size="sm"
+              />
+
+            </div>
+
           </q-item-label>
+
         </q-item-section>
 
         <q-item-section side top>
@@ -116,6 +162,8 @@ export default defineComponent({
   }
 
   .qweet-content{
-    white-space: pre-line;
+    p{
+      white-space: pre-line !important ;
+    }
   }
 </style>
