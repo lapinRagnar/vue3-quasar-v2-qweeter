@@ -171,6 +171,7 @@ export default defineComponent({
       }
 
       this.qweets.unshift(newQweet)
+      this.newQweetContent = ''
     },
 
     deleteQweet(qweet){
