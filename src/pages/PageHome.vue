@@ -11,6 +11,7 @@
         counter
         maxlength="280"
         placeholder="qu'est ce que tu raconte de beau..."
+        autogrow
       >
 
       <template v-slot:before>
