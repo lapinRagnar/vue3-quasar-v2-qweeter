@@ -54,7 +54,10 @@
 
     <q-list>
 
-      <q-item class="q-py-md">
+      <q-item
+        class="q-py-md"
+        v-for="qweet in qweets" :key="qweet.date"
+        >
         <q-item-section avatar top>
           <q-avatar>
             <img src="https://cdn.quasar.dev/img/avatar2.jpg">
@@ -71,60 +74,49 @@
           </q-item-label>
 
           <q-item-label class="qweet-content text-body1 q-pt-lg">
-
-            <p>
-
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis facere alias,
-              necessitatibus magni maxime, rem vero, veniam eum enim vel molestiae.
-
-              Ratione commodi doloremque obcaecati culpa quasi praesentium esse dolores.
-
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae laboriosam aut ipsa nostrum expedita totam ea quam corporis, quod, ad sunt amet aliquam, fuga itaque. Magni pariatur eum ea?
-
-
-            </p>
-
-            <div class="row justify-between q-mt-sm">
-
-              <q-btn
-                flat
-                round
-                color="grey"
-                icon="far fa-comment"
-                size="sm"
-              />
-
-              <q-btn
-                flat
-                round
-                color="grey"
-                icon="fas fa-retweet"
-                size="sm"
-              />
-
-              <q-btn
-                flat
-                round
-                color="grey"
-                icon="far fa-heart"
-                size="sm"
-              />
-              <q-btn
-                flat
-                round
-                color="grey"
-                icon="fas fa-trash"
-                size="sm"
-              />
-
-            </div>
-
+            {{ qweet.content}}
           </q-item-label>
+
+          <div class="row justify-between q-mt-sm">
+
+            <q-btn
+              flat
+              round
+              color="grey"
+              icon="far fa-comment"
+              size="sm"
+            />
+
+            <q-btn
+              flat
+              round
+              color="grey"
+              icon="fas fa-retweet"
+              size="sm"
+            />
+
+            <q-btn
+              flat
+              round
+              color="grey"
+              icon="far fa-heart"
+              size="sm"
+            />
+            <q-btn
+              flat
+              round
+              color="grey"
+              icon="fas fa-trash"
+              size="sm"
+            />
+
+          </div>
+
 
         </q-item-section>
 
         <q-item-section side top>
-          1 min ago
+          {{ qweet.date }}
         </q-item-section>
       </q-item>
 
@@ -144,7 +136,17 @@ export default defineComponent({
   name: 'PageHome',
   data(){
     return {
-      newQweetContent: ''
+      newQweetContent: '',
+      qweets: [
+        {
+          content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae laboriosam aut ipsa nostrum expedita totam ea quam corporis, quod, ad sunt amet aliquam, fuga itaque. Magni pariatur eum ea?',
+          date: 1663055201593
+        },
+        {
+          content: "Lorem Ipsum est un générateur de faux textes aléatoires. Vous choisissez le nombre de paragraphes, de mots ou de listes. Vous obtenez alors un texte aléatoire que vous pourrez ensuite utiliser librement dans vos maquettes.",
+          date: 1663055445649
+        },
+      ]
     }
   }
 })
