@@ -5,6 +5,7 @@
     <div class="q-py-lg q-px-md">
 
       <q-input
+        class="new-qweet"
         bottom-slots
         v-model="newQweetContent"
         label="quoi de neuf docteur..."
@@ -55,3 +56,9 @@ export default defineComponent({
   }
 })
 </script>
+
+<style lang="scss">
+  .new-qweet{
+    font-size: 19px;
+  }
+</style>
