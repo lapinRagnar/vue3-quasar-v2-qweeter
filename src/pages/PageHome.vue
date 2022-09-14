@@ -65,8 +65,10 @@
 
           <q-item
             class="q-py-md"
-            v-for="qweet in qweets" :key="qweet.date"
-            >
+            v-for="qweet in qweets"
+            :key="qweet.id"
+          >
+
             <q-item-section avatar top>
               <q-avatar>
                 <img src="https://cdn.quasar.dev/img/avatar2.jpg">
@@ -144,7 +146,7 @@
 <script>
 
 import db from 'src/boot/firebase'
-import { collection, query, onSnapshot, orderBy, addDoc } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy, addDoc, deleteDoc, doc } from "firebase/firestore";
 
 import { defineComponent } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
@@ -198,12 +200,30 @@ export default defineComponent({
       this.newQweetContent = ''
     },
 
-    deleteQweet(qweet){
-      console.log(qweet)
-      let qweetToDelete = qweet.date
-      let index = this.qweets.findIndex(qweet => qweet.date == qweetToDelete)
-      console.log(index);
-      this.qweets.splice(index, 1)
+    async deleteQweet(qweet){
+      // console.log(qweet)
+      // let qweetToDelete = qweet.date
+      // let index = this.qweets.findIndex(qweet => qweet.date == qweetToDelete)
+      // console.log(index);
+      // this.qweets.splice(index, 1)
+
+      console.log('id du qweet à supprimer',qweet.id)
+
+      // await deleteDoc(doc(db, "qweet", qweet.id))
+      //   .then(() => console.log('le qweet a bien été supprimé!'))
+      //   .catch(error => console.log(error))
+
+      const docRef = doc(db, "qweets", qweet.id)
+
+      deleteDoc(docRef)
+      .then(() => {
+          console.log("Entire Document has been deleted successfully.")
+      })
+      .catch(error => {
+          console.log(error)
+      })
+
+
     }
 
 
@@ -224,6 +244,8 @@ export default defineComponent({
 
         let qweetChange = change.doc.data()
 
+        qweetChange.id = change.doc.id
+
 
         if (change.type === "added") {
           console.log("New qweets: ", qweetChange);
@@ -234,6 +256,8 @@ export default defineComponent({
         }
         if (change.type === "removed") {
           console.log("Removed qweets: ", qweetChange);
+          let index = this.qweets.findIndex(qweet => qweet.id = qweetChange.id)
+          this.qweets.splice(index, 1)
         }
       });
     });
