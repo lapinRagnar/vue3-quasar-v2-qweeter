@@ -108,10 +108,11 @@
                 />
 
                 <q-btn
+                  @click="toggleLiked(qweet)"
                   flat
                   round
-                  color="grey"
-                  icon="far fa-heart"
+                  :color="qweet.liked ? 'pink' : 'grey'"
+                  :icon="qweet.liked ? 'fas fa-heart' : 'far fa-heart' "
                   size="sm"
                 />
                 <q-btn
@@ -146,7 +147,7 @@
 <script>
 
 import db from 'src/boot/firebase'
-import { collection, query, onSnapshot, orderBy, addDoc, deleteDoc, doc } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy, addDoc, deleteDoc, doc, updateDoc  } from "firebase/firestore";
 
 import { defineComponent } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
@@ -158,12 +159,16 @@ export default defineComponent({
       newQweetContent: '',
       // qweets: [
       //   {
+      //     id: 'ID1',
       //     content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae laboriosam aut ipsa nostrum expedita totam ea quam corporis, quod, ad sunt amet aliquam, fuga itaque. Magni pariatur eum ea?',
-      //     date: 1663055201593
+      //     date: 1669055201593,
+      //     liked: false
       //   },
       //   {
+      //     id: 'ID2',
       //     content: "Lorem Ipsum est un générateur de faux textes aléatoires. Vous choisissez le nombre de paragraphes, de mots ou de listes. Vous obtenez alors un texte aléatoire que vous pourrez ensuite utiliser librement dans vos maquettes.",
-      //     date: 1663055445649
+      //     date: 1663025445649,
+      //     liked: true
       //   },
       // ],
       qweets: []
@@ -183,7 +188,8 @@ export default defineComponent({
     async addNewQweet(){
       let newQweet = {
         content: this.newQweetContent,
-        date: Date.now()
+        date: Date.now(),
+        liked: false
       }
 
       // this.qweets.unshift(newQweet)
@@ -198,6 +204,17 @@ export default defineComponent({
 
 
       this.newQweetContent = ''
+    },
+
+    async toggleLiked(qweet) {
+      console.log('toggle');
+
+      const toggleRef = doc(db, "qweets", qweet.id)
+
+      await updateDoc(toggleRef, {
+        liked: !qweet.liked
+      });
+
     },
 
     async deleteQweet(qweet){
@@ -253,10 +270,13 @@ export default defineComponent({
         }
         if (change.type === "modified") {
           console.log("Modified qweets: ", qweetChange);
+
+          let index = this.qweets.findIndex(qweet => qweet.id == qweetChange.id)
+          Object.assign(this.qweets[index], qweetChange)
         }
         if (change.type === "removed") {
           console.log("Removed qweets: ", qweetChange);
-          let index = this.qweets.findIndex(qweet => qweet.id = qweetChange.id)
+          let index = this.qweets.findIndex(qweet => qweet.id == qweetChange.id)
           this.qweets.splice(index, 1)
         }
       });
