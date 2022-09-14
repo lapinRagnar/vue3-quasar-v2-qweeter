@@ -144,7 +144,7 @@
 <script>
 
 import db from 'src/boot/firebase'
-import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, onSnapshot, orderBy, addDoc } from "firebase/firestore";
 
 import { defineComponent } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
@@ -178,13 +178,23 @@ export default defineComponent({
       return useTimeAgo(value)
     },
 
-    addNewQweet(){
+    async addNewQweet(){
       let newQweet = {
         content: this.newQweetContent,
         date: Date.now()
       }
 
-      this.qweets.unshift(newQweet)
+      // this.qweets.unshift(newQweet)
+
+      // Add a new document with a generated id.
+      await addDoc(collection(db, "qweets"), newQweet)
+        .then(docRef => {
+
+          console.log("Document written with ID: ", docRef.id)
+        })
+        .catch(error => console.log('misy erreur ooooh', error))
+
+
       this.newQweetContent = ''
     },
 
