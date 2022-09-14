@@ -143,6 +143,9 @@
 
 <script>
 
+import db from 'src/boot/firebase'
+import { collection, query, onSnapshot, orderBy } from "firebase/firestore";
+
 import { defineComponent } from 'vue'
 import { useTimeAgo } from '@vueuse/core'
 
@@ -151,16 +154,17 @@ export default defineComponent({
   data(){
     return {
       newQweetContent: '',
-      qweets: [
-        {
-          content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae laboriosam aut ipsa nostrum expedita totam ea quam corporis, quod, ad sunt amet aliquam, fuga itaque. Magni pariatur eum ea?',
-          date: 1663055201593
-        },
-        {
-          content: "Lorem Ipsum est un générateur de faux textes aléatoires. Vous choisissez le nombre de paragraphes, de mots ou de listes. Vous obtenez alors un texte aléatoire que vous pourrez ensuite utiliser librement dans vos maquettes.",
-          date: 1663055445649
-        },
-      ],
+      // qweets: [
+      //   {
+      //     content: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Maiores vitae laboriosam aut ipsa nostrum expedita totam ea quam corporis, quod, ad sunt amet aliquam, fuga itaque. Magni pariatur eum ea?',
+      //     date: 1663055201593
+      //   },
+      //   {
+      //     content: "Lorem Ipsum est un générateur de faux textes aléatoires. Vous choisissez le nombre de paragraphes, de mots ou de listes. Vous obtenez alors un texte aléatoire que vous pourrez ensuite utiliser librement dans vos maquettes.",
+      //     date: 1663055445649
+      //   },
+      // ],
+      qweets: []
 
     }
   },
@@ -191,6 +195,38 @@ export default defineComponent({
       console.log(index);
       this.qweets.splice(index, 1)
     }
+
+
+  },
+  mounted(){
+
+
+    console.log('salut')
+    console.log(db)
+
+
+
+    const q = query(collection(db, "qweets"), orderBy("date", "asc"))
+
+    onSnapshot(q, (snapshot) => {
+
+      snapshot.docChanges().forEach((change) => {
+
+        let qweetChange = change.doc.data()
+
+
+        if (change.type === "added") {
+          console.log("New qweets: ", qweetChange);
+          this.qweets.unshift(qweetChange)
+        }
+        if (change.type === "modified") {
+          console.log("Modified qweets: ", qweetChange);
+        }
+        if (change.type === "removed") {
+          console.log("Removed qweets: ", qweetChange);
+        }
+      });
+    });
 
 
   }
