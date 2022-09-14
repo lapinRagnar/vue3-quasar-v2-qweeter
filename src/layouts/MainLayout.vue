@@ -1,5 +1,5 @@
 <template>
-  
+
   <q-layout view="lHr lpR fFf">
 
     <q-header bordered class="bg-primary text-white">
@@ -151,7 +151,9 @@
 
     <!-- la page centrale -->
     <q-page-container>
-      <router-view />
+      <keep-alive>
+        <router-view />
+      </keep-alive>
     </q-page-container>
 
   </q-layout>
